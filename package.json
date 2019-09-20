@@ -1,6 +1,7 @@
 {
   "name": "sushi-bar",
   "version": "0.0.0",
+  "main": "server.js",
   "scripts": {
     "ng": "ng",
     "build": "ng build",
@@ -13,6 +14,8 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.4",
+    "@angular/cli": "^8.3.5",
+    "@angular/compiler-cli": "^8.2.7",
     "@angular/common": "~8.2.4",
     "@angular/compiler": "~8.2.4",
     "@angular/core": "~8.2.4",
