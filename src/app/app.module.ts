@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
-import { GoodsComponent } from './goods/goods.component';
 import { AboutComponent } from './about/about.component';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { AboutComponent } from './about/about.component';
     HeaderComponent,
     HomeComponent,
     AdminComponent,
-    GoodsComponent,
     AboutComponent
   ],
   imports: [
