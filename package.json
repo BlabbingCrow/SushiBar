@@ -15,17 +15,19 @@
   "dependencies": {
     "@angular/animations": "~8.2.4",
     "@angular/cli": "^8.3.5",
-    "@angular/compiler-cli": "^8.2.7",
     "@angular/common": "~8.2.4",
     "@angular/compiler": "~8.2.4",
+    "@angular/compiler-cli": "^8.2.7",
     "@angular/core": "~8.2.4",
     "@angular/forms": "~8.2.4",
     "@angular/platform-browser": "~8.2.4",
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
     "express": "^4.17.1",
+    "path": "^0.12.7",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
+    "typescript": "~3.5.3",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
