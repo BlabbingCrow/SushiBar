@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Product } from './Product';
 
 @Component({
   selector: 'app-goods',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GoodsComponent implements OnInit {
 
-  constructor() { }
+  products: Product[] = [];
+
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
+    this.httpClient.get('https://sushibarback.herokuapp.com/goods').subscribe((result: any) => this.products = result);
   }
 
 }
