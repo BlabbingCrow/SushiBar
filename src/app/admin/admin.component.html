@@ -1,3 +1,29 @@
-<p class="textUnderHeader">
-    admin works!
-</p>
+<div class="textUnderHeader">
+    <button (click)="buttonCreateClick(newName.value, newDescription.value, newPrice.value, newUrl.value)">Добавить</button>
+    
+    <br>
+    <input #newName type="text" placeholder="name">
+    <input #newDescription type="text" placeholder="description">
+    <input #newPrice type="text" placeholder="price">
+    <input #newUrl type="text" placeholder="url">
+    <table rules="all" class="productsTable">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>description</th>
+                <th>price</th>
+                <th>url</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tr *ngFor="let product of products">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.url}}</td>
+            <td><button (click)="buttonUpdateClick(newName.value, newDescription.value, newPrice.value, newUrl.value)">Обновить</button><button (click)="buttonDeleteClick(product.id)">Удалить</button></td>
+        </tr>
+    </table>
+</div>
