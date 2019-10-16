@@ -1,0 +1,8 @@
+<div class="textUnderHeader">
+    <input #login type="text" placeholder="login">
+    <br>
+    <input #password type="text" placeholder="password">
+    <br>
+    <button (click)="buttonLoginClick(login.value, password.value)">Вход</button>
+    <button routerLink="/register">Зарегестрироваться</button>
+</div>

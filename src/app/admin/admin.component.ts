@@ -12,8 +12,8 @@ export class AdminComponent implements OnInit {
   products: Product[] = [];
 
   constructor(private httpClient: HttpClient) { }
-  way = "sushibarback.herokuapp.com";
-  // way = "localhost:3001";
+  //way = "sushibarback.herokuapp.com";
+  way = "localhost:3001";
   options = {
     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
   };
