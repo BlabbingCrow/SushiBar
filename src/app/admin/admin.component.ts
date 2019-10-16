@@ -12,44 +12,52 @@ export class AdminComponent implements OnInit {
   products: Product[] = [];
 
   constructor(private httpClient: HttpClient) { }
+  way = "sushibarback.herokuapp.com";
+  // way = "localhost:3001";
+  options = {
+    headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+  };
 
   ngOnInit() {
-    //this.httpClient.get('https://sushibarback.herokuapp.com/goods').subscribe((result: any) => this.products = result);
-    this.httpClient.get('http://localhost:3001/goods').subscribe((result: any) => this.products = result);
+    this.httpClient.get(`http://${this.way}/goods`).subscribe((result: any) => this.products = result);
   }
 
   buttonCreateClick(name: string, description: string, price: string, url: string) {
-    // let body = new URLSearchParams();
-    // body.set('name', name);
-    // body.set('description', description);
-    // body.set('price', price);
-    // body.set('url', url);
-    let options = {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-    };
-
-    this.httpClient.post('http://localhost:3001/goods/create', {
+    this.httpClient.post(`http://${this.way}/goods/create`, {
       name: name,
       description: description,
       price: price,
       url: url
-    }, options).subscribe((result: any) => {
+    }, this.options).subscribe((result: any) => {
       if (!result) return;
       this.products.push({id: result.id, name: result.name, description: result.description, price: result.price, url: result.url});
     });
   }
 
-  buttonUpdateClick(name, description, price) {
-    this.httpClient.post('http://localhost:3001/goods/update', {
+  buttonUpdateClick(id: number, name: string, description: string, price: string, url: string) {
+    this.httpClient.post(`http://${this.way}/goods/update`, {
+      id: id,
       name: name,
       description: description,
-      price: price
-    }).subscribe();
+      price: price,
+      url: url
+    }, this.options).subscribe((result: any) => {
+      if (!result) return;
+      let productIndex = this.products.findIndex(x => x.id == result.id);
+      if (productIndex == -1) return;
+      this.products[productIndex] = result;
+    });
   }
 
-  buttonDeleteClick(id) {
-    this.httpClient.post('http://localhost:3001/goods/delete', {
+  buttonDeleteClick(id: number) {
+    this.httpClient.post(`http://${this.way}/goods/delete`, {
       id: id
-    }).subscribe();
+    }, this.options).subscribe((result: any) => {
+      if (result) {
+        let productIndex = this.products.findIndex(x => x.id == id);
+        if (productIndex == -1) return;
+        this.products.splice(productIndex, 1);
+      }
+    });
   }
 }

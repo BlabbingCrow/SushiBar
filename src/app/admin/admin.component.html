@@ -23,7 +23,10 @@
             <td>{{product.description}}</td>
             <td>{{product.price}}</td>
             <td>{{product.url}}</td>
-            <td><button (click)="buttonUpdateClick(newName.value, newDescription.value, newPrice.value, newUrl.value)">Обновить</button><button (click)="buttonDeleteClick(product.id)">Удалить</button></td>
+            <td>
+                <button (click)="buttonUpdateClick(product.id, newName.value, newDescription.value, newPrice.value, newUrl.value)">Обновить</button>
+                <button (click)="buttonDeleteClick(product.id)">Удалить</button>
+            </td>
         </tr>
     </table>
 </div>

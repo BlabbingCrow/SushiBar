@@ -14,7 +14,7 @@ export class GoodsComponent implements OnInit {
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
-    //this.httpClient.get('https://sushibarback.herokuapp.com/goods').subscribe((result: any) => this.products = result);
-    this.httpClient.get('http://localhost:3001/goods').subscribe((result: any) => this.products = result);
+    this.httpClient.get('https://sushibarback.herokuapp.com/goods').subscribe((result: any) => this.products = result);
+    //this.httpClient.get('http://localhost:3001/goods').subscribe((result: any) => this.products = result);
   }
 }
