@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Product } from '../goods/Product';
+import { way } from '../config';
 
 @Component({
   selector: 'app-admin',
@@ -12,18 +13,17 @@ export class AdminComponent implements OnInit {
   products: Product[] = [];
 
   constructor(private httpClient: HttpClient) { }
-  //way = "sushibarback.herokuapp.com";
-  way = "localhost:3001";
+
   options = {
     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
   };
 
   ngOnInit() {
-    this.httpClient.get(`http://${this.way}/goods`).subscribe((result: any) => this.products = result);
+    this.httpClient.get(`http://${way}/goods`).subscribe((result: any) => this.products = result);
   }
 
   buttonCreateClick(name: string, description: string, price: string, url: string) {
-    this.httpClient.post(`http://${this.way}/goods/create`, {
+    this.httpClient.post(`http://${way}/goods/create`, {
       name: name,
       description: description,
       price: price,
@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
   }
 
   buttonUpdateClick(id: number, name: string, description: string, price: string, url: string) {
-    this.httpClient.post(`http://${this.way}/goods/update`, {
+    this.httpClient.post(`http://${way}/goods/update`, {
       id: id,
       name: name,
       description: description,
@@ -50,7 +50,7 @@ export class AdminComponent implements OnInit {
   }
 
   buttonDeleteClick(id: number) {
-    this.httpClient.post(`http://${this.way}/goods/delete`, {
+    this.httpClient.post(`http://${way}/goods/delete`, {
       id: id
     }, this.options).subscribe((result: any) => {
       if (result) {

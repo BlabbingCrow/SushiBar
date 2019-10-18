@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Product } from './Product';
+import { way } from '../config';
 
 @Component({
   selector: 'app-goods',
@@ -14,7 +15,6 @@ export class GoodsComponent implements OnInit {
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
-    //this.httpClient.get('https://sushibarback.herokuapp.com/goods').subscribe((result: any) => this.products = result);
-    this.httpClient.get('http://localhost:3001/goods').subscribe((result: any) => this.products = result);
+    this.httpClient.get(`http://${way}/goods`).subscribe((result: any) => this.products = result);
   }
 }
