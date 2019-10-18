@@ -1,11 +1,11 @@
-<div class="textUnderHeader">
-    <button (click)="buttonCreateClick(newName.value, newDescription.value, newPrice.value, newUrl.value)">Добавить</button>
+<div class="textUnderHeader"> 
+    <button (click)="isUpdate ? buttonCreateClick() : buttonUpdateClick()">{{isUpdate ? Добавить : Изменить}}</button>
     
     <br>
-    <input #newName type="text" placeholder="name">
-    <input #newDescription type="text" placeholder="description">
-    <input #newPrice type="text" placeholder="price">
-    <input #newUrl type="text" placeholder="url">
+    <input [(ngModel)]="product.name" type="text" placeholder="name">
+    <input [(ngModel)]="product.description" type="text" placeholder="description">
+    <input [(ngModel)]="product.price" type="text" placeholder="price">
+    <input [(ngModel)]="product.url" type="text" placeholder="url">
     <table rules="all" class="productsTable">
         <thead>
             <tr>
@@ -24,7 +24,7 @@
             <td>{{product.price}}</td>
             <td>{{product.url}}</td>
             <td>
-                <button (click)="buttonUpdateClick(product.id, newName.value, newDescription.value, newPrice.value, newUrl.value)">Обновить</button>
+                <button (click)="buttonLoadUpdateClick(product.id)">Обновить</button>
                 <button (click)="buttonDeleteClick(product.id)">Удалить</button>
             </td>
         </tr>
