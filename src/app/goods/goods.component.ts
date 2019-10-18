@@ -15,6 +15,6 @@ export class GoodsComponent implements OnInit {
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
-    this.httpClient.get(`http://${way}/goods`).subscribe((result: any) => this.products = result);
+    this.httpClient.get(`${way}/goods`).subscribe((result: any) => this.products = result);
   }
 }

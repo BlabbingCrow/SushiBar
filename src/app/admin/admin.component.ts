@@ -19,11 +19,11 @@ export class AdminComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.httpClient.get(`http://${way}/goods`).subscribe((result: any) => this.products = result);
+    this.httpClient.get(`${way}/goods`).subscribe((result: any) => this.products = result);
   }
 
   buttonCreateClick(name: string, description: string, price: string, url: string) {
-    this.httpClient.post(`http://${way}/goods/create`, {
+    this.httpClient.post(`${way}/goods/create`, {
       name: name,
       description: description,
       price: price,
@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
   }
 
   buttonUpdateClick(id: number, name: string, description: string, price: string, url: string) {
-    this.httpClient.post(`http://${way}/goods/update`, {
+    this.httpClient.post(`${way}/goods/update`, {
       id: id,
       name: name,
       description: description,
@@ -50,7 +50,7 @@ export class AdminComponent implements OnInit {
   }
 
   buttonDeleteClick(id: number) {
-    this.httpClient.post(`http://${way}/goods/delete`, {
+    this.httpClient.post(`${way}/goods/delete`, {
       id: id
     }, this.options).subscribe((result: any) => {
       if (result) {
