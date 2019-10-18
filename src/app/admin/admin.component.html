@@ -1,5 +1,5 @@
 <div class="textUnderHeader"> 
-    <button (click)="isUpdate ? buttonCreateClick() : buttonUpdateClick()">{{isUpdate ? Добавить : Изменить}}</button>
+    <button (click)="isUpdate ? buttonCreateClick() : buttonUpdateClick()">{{isUpdate ? "Добавить" : "Изменить"}}</button>
     
     <br>
     <input [(ngModel)]="product.name" type="text" placeholder="name">
