@@ -25,19 +25,29 @@ export class AdminComponent implements OnInit {
     this.httpClient.get(`${way}/goods`).subscribe((result: any) => this.products = result);
   }
 
-  buttonCreateClick() {
+  buttonCreateUpdateClick() {
+    if (this.isUpdate) {
+      this.Update();
+    }
+    else {
+      this.Create();
+    }
+  }
+
+  Create() {
     this.httpClient.post(`${way}/goods/create`, this.product, this.options).subscribe((result: any) => {
       if (!result) return;
       this.products.push({id: result.id, name: result.name, description: result.description, price: result.price, url: result.url});
     });
   }
 
-  buttonLoadUpdateClick(id: number) {
-    this.product = JSON.parse(JSON.stringify(this.products.find(x => x.id == id)));
+  buttonLoadUpdateClick(id: string) {
+    this.product = JSON.parse(JSON.stringify(this.products.find(x => x.id == parseInt(id))));
     this.isUpdate = true;
+    console.log(this.isUpdate);
   }
 
-  buttonUpdateClick() {
+  Update() {
     this.httpClient.post(`${way}/goods/update`, this.product, this.options).subscribe((result: any) => {
       if (!result) return;
       let productIndex = this.products.findIndex(x => x.id == result.id);
