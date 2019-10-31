@@ -5,11 +5,11 @@ import { AuthCookie } from '../auth-cookies-handler';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.less']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.less']
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
   login: string = "";
   password: string = "";
 
@@ -25,8 +25,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  buttonRegisterClick() {
-    this.httpClient.post(`${way}/register`, {
+  buttonLoginClick() {
+    this.httpClient.post(`${way}/login`, {
       login: this.login,
       password: this.password
     }, this.options).subscribe((result: any) => {

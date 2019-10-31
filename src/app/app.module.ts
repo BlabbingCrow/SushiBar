@@ -8,9 +8,10 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { AuthCookie } from './auth-cookies-handler';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,15 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     AdminComponent,
     AboutComponent,
-    AuthComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AuthCookie
   ],
   providers: [],
   bootstrap: [AppComponent]

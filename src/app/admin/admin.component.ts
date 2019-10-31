@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Product } from '../goods/Product';
 import { way } from '../config';
+import { AuthCookie } from '../auth-cookies-handler';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -15,14 +17,24 @@ export class AdminComponent implements OnInit {
   isUpdate: boolean = false;
   product: Product = new Product();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private router: Router, private httpClient: HttpClient, private _authCookie: AuthCookie) { }
 
   options = {
     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
   };
 
   ngOnInit() {
-    this.httpClient.get(`${way}/goods`).subscribe((result: any) => this.products = result);
+    if (!this._authCookie.getAuth()) {
+      return this.router.navigate(["/"]);
+    }
+    this.httpClient.post(`${way}/goods`, {token: this._authCookie.getAuth(), pageName: "admin"}, this.options).subscribe((result: any) => {
+      if (result) {
+        this.products = result;
+      }
+      else {
+        this.router.navigate(["/"]);
+      }
+    });
   }
 
   buttonCreateUpdateClick() {
@@ -35,7 +47,7 @@ export class AdminComponent implements OnInit {
   }
 
   Create() {
-    this.httpClient.post(`${way}/goods/create`, this.product, this.options).subscribe((result: any) => {
+    this.httpClient.post(`${way}/goods/create`, {token: this._authCookie.getAuth(), data: this.product}, this.options).subscribe((result: any) => {
       if (!result) return;
       this.products.push({id: result.id, name: result.name, description: result.description, price: result.price, url: result.url});
     });
@@ -44,23 +56,23 @@ export class AdminComponent implements OnInit {
   buttonLoadUpdateClick(id: string) {
     this.product = JSON.parse(JSON.stringify(this.products.find(x => x.id == parseInt(id))));
     this.isUpdate = true;
-    console.log(this.isUpdate);
   }
 
   Update() {
-    this.httpClient.post(`${way}/goods/update`, this.product, this.options).subscribe((result: any) => {
+    this.httpClient.post(`${way}/goods/update`, {token: this._authCookie.getAuth(), data: this.product}, this.options).subscribe((result: any) => {
       if (!result) return;
       let productIndex = this.products.findIndex(x => x.id == result.id);
       if (productIndex == -1) return;
       this.products[productIndex] = result;
+      this.product = new Product();
     });
     this.isUpdate = false;
   }
 
   buttonDeleteClick(id: number) {
-    this.httpClient.post(`${way}/goods/delete`, {
+    this.httpClient.post(`${way}/goods/delete`, {token: this._authCookie.getAuth(), data: {
       id: id
-    }, this.options).subscribe((result: any) => {
+    }}, this.options).subscribe((result: any) => {
       if (result) {
         let productIndex = this.products.findIndex(x => x.id == id);
         if (productIndex == -1) return;
