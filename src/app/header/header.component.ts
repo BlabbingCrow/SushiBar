@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
 
   isAuthed: boolean;
 
+  // tslint:disable-next-line:variable-name
   constructor(private router: Router, private _authCookie: AuthCookie) { }
 
   ngOnInit() {
@@ -23,10 +24,10 @@ export class HeaderComponent implements OnInit {
   buttonLoginLogoutClick() {
     if (this.isAuthed) {
       this._authCookie.deleteAuth();
-      this.router.navigate(["/"]);
-    }
-    else {
-      this.router.navigate(["/login"]);
+      this._authCookie.setAdmin(false);
+      this.router.navigate(['/']);
+    } else {
+      this.router.navigate(['/login']);
     }
   }
 }

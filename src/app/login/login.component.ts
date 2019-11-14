@@ -10,9 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.less']
 })
 export class LoginComponent implements OnInit {
-  login: string = "";
-  password: string = "";
+  login = '';
+  password = '';
+  isOAuth = false;
 
+  // tslint:disable-next-line:variable-name
   constructor(private router: Router, private httpClient: HttpClient, private _authCookie: AuthCookie) { }
 
   options = {
@@ -21,19 +23,25 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this._authCookie.getAuth()) {
-      this.router.navigate(["/"]);
+      this.router.navigate(['/']);
     }
   }
 
   buttonLoginClick() {
     this.httpClient.post(`${way}/login`, {
       login: this.login,
-      password: this.password
+      password: this.password,
+      isOAuth: this.isOAuth
     }, this.options).subscribe((result: any) => {
-      if (!result) return;
+      if (!result) { return; }
       this._authCookie.setAuth(result.token);
       this._authCookie.setAdmin(result.isAdmin);
-      this.router.navigate(["/"]);
+      this.router.navigate(['/']);
     });
+  }
+
+  buttonVkClick() {
+    this.isOAuth = true;
+    this.buttonLoginClick();
   }
 }

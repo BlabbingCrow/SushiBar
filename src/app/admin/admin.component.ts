@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   isUpdate = false;
   product: Product = new Product();
 
+  // tslint:disable-next-line:variable-name
   constructor(private router: Router, private httpClient: HttpClient, private _authCookie: AuthCookie) { }
 
   options = {

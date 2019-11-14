@@ -5,10 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 @Injectable()
 @NgModule()
 export class AuthCookie {
-    constructor() {
-        if (!Cookie) {return ; }
-        Cookie.set('user_admin', JSON.stringify(false));
-    }
+    constructor() { }
 
     private authState = new BehaviorSubject(Cookie.get('id_token') != null);
 
