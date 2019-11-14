@@ -1,5 +1,5 @@
-//let way = "https://sushibarback.herokuapp.com";
-let way = "http://localhost:3001";
+// const way = 'https://sushibarback.herokuapp.com';
+const way = 'http://localhost:3001';
 export {
     way
-}
+};

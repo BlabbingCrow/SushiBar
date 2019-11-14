@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthCookie } from './auth-cookies-handler';
+import { ActivateGuard } from './activate-guard';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AuthCookie } from './auth-cookies-handler';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    AuthCookie
+    AuthCookie,
+    ActivateGuard
   ],
   providers: [],
   bootstrap: [AppComponent]

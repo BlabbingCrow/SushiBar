@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     }, this.options).subscribe((result: any) => {
       if (!result) return;
       this._authCookie.setAuth(result.token);
+      this._authCookie.setAdmin(result.isAdmin);
       this.router.navigate(["/"]);
     });
   }

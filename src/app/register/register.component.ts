@@ -10,9 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.less']
 })
 export class RegisterComponent implements OnInit {
-  login: string = "";
-  password: string = "";
+  login = '';
+  password = '';
 
+  // tslint:disable-next-line:variable-name
   constructor(private router: Router, private httpClient: HttpClient, private _authCookie: AuthCookie) { }
 
   options = {
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     if (this._authCookie.getAuth()) {
-      this.router.navigate(["/"]);
+      this.router.navigate(['/']);
     }
   }
 
@@ -30,9 +31,10 @@ export class RegisterComponent implements OnInit {
       login: this.login,
       password: this.password
     }, this.options).subscribe((result: any) => {
-      if (!result) return;
+      if (!result) { return; }
       this._authCookie.setAuth(result.token);
-      this.router.navigate(["/"]);
+      this._authCookie.setAdmin(result.isAdmin);
+      this.router.navigate(['/']);
     });
   }
 }
