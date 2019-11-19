@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthCookie } from './auth-cookies-handler';
 import { ActivateGuard } from './activate-guard';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ActivateGuard } from './activate-guard';
     HttpClientModule,
     FormsModule,
     AuthCookie,
-    ActivateGuard
+    ActivateGuard,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

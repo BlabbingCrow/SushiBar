@@ -10,15 +10,15 @@
                     <mdb-card-img src={{product.url}} alt="Card image cap"></mdb-card-img>
                     <!--Card content-->
                     <mdb-card-body>
-                    
+
                         <!--Title-->
                         <mdb-card-title>
                         <h4>{{product.name}} <br> {{product.price}} </h4>
                         </mdb-card-title>
-                    
+
                         <!--Text-->
-                        <mdb-card-text> {{product.description}} </mdb-card-text>
-                    
+                        <mdb-card-text [innerHTML]="product.description"></mdb-card-text>
+
                         <!-- <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a> -->
                     </mdb-card-body>
                 </mdb-card>
