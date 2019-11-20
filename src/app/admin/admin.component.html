@@ -10,16 +10,6 @@
       [(ngModel)]="product.description"
       [config]="{uiColor: '#f1d941'}"
       [readonly]="false"
-      (change)="onChange($event)"
-      (editorChange)="onEditorChange($event)"
-      (ready)="onReady($event)"
-      (focus)="onFocus($event)"
-      (blur)="onBlur($event)"
-      (contentDom)="onContentDom($event)"
-      (fileUploadRequest)="onFileUploadRequest($event)"
-      (fileUploadResponse)="onFileUploadResponse($event)"
-      (paste)="onPaste($event)"
-      (drop)="onDrop($event)"
       debounce="500">
     </ckeditor>
     <table rules="all" class="productsTable">
