@@ -5,6 +5,10 @@
     <input [(ngModel)]="product.name" type="text" placeholder="name">
     <input [(ngModel)]="product.price" type="text" placeholder="price">
     <input [(ngModel)]="product.url" type="text" placeholder="url">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="filedata" />
+        <input type="submit" value="Send" />
+    </form>
     <br>
     <ckeditor
       [(ngModel)]="product.description"

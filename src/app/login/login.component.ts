@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   login = '';
   password = '';
-  isOAuth = false;
 
   // tslint:disable-next-line:variable-name
   constructor(private router: Router, private httpClient: HttpClient, private _authCookie: AuthCookie) { }
@@ -30,18 +29,12 @@ export class LoginComponent implements OnInit {
   buttonLoginClick() {
     this.httpClient.post(`${way}/login`, {
       login: this.login,
-      password: this.password,
-      isOAuth: this.isOAuth
+      password: this.password
     }, this.options).subscribe((result: any) => {
       if (!result) { return; }
       this._authCookie.setAuth(result.token);
       this._authCookie.setAdmin(result.isAdmin);
       this.router.navigate(['/']);
     });
-  }
-
-  buttonVkClick() {
-    this.isOAuth = true;
-    this.buttonLoginClick();
   }
 }
