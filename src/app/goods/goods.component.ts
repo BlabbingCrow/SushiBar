@@ -4,6 +4,7 @@ import { Product } from './Product';
 import { way } from '../config';
 import { Router } from '@angular/router';
 import { AuthCookie } from '../auth-cookies-handler';
+import { WebSocketService } from '../web-soket';
 
 @Component({
   selector: 'app-goods',
@@ -17,22 +18,30 @@ export class GoodsComponent implements OnInit {
   lastFindText = '';
   waitTimes = 0;
 
-  constructor(private router: Router, private httpClient: HttpClient, private _authCookie: AuthCookie) { }
+  constructor(private router: Router, private httpClient: HttpClient, private _authCookie: AuthCookie, private webSocketService: WebSocketService) { }
 
   options = {
     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
   };
 
   ngOnInit() {
-    this.httpClient.post(`${way}/goods`, `data=${JSON.stringify({
-      token: this._authCookie.getAuth(), pageName: 'goods'
-      })}`, this.options).subscribe((result: any) => {
-      if (result) {
-        this.products = result;
+    this.webSocketService.webSocketContext.onmessage = (result: any) => {
+      if (result && result.data) {
+        console.log(result.data);
+        this.products = JSON.parse(result.data);
       } else {
         this.router.navigate(['/']);
       }
-    });
+    }
+    // this.httpClient.post(`${way}/goods`, `data=${JSON.stringify({
+    //   token: this._authCookie.getAuth(), pageName: 'goods'
+    //   })}`, this.options).subscribe((result: any) => {
+    //   if (result) {
+    //     this.products = result;
+    //   } else {
+    //     this.router.navigate(['/']);
+    //   }
+    // });
     setInterval(() => {
       if (this.waitTimes !== 0) {
         this.waitTimes--;

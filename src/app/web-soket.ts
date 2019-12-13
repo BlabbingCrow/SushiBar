@@ -6,7 +6,7 @@ export class WebSocketService {
   // tslint:disable-next-line:variable-name
   private _message: string;
   // tslint:disable-next-line:variable-name
-  private _webSocketContext = new WebSocket('ws://localhost:3001');
+  private _webSocketContext = new WebSocket('ws://localhost:3002/');
 
   constructor() {
   }
