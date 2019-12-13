@@ -23,10 +23,10 @@ export class HomeComponent implements OnInit {
     if (token) {
       this.httpClient.get(`https://login.yandex.ru/info?oauth_token=${token}`, this.options).subscribe((result: any) => {
         if (!result) { return; }
-        this.httpClient.post(`${way}/loginByToken`, {
+        this.httpClient.post(`${way}/loginByToken`, `data=${JSON.stringify({
           login: result.default_email,
           oAuthToken: token
-        }, this.options).subscribe((resultFromServer: any) => {
+        })}`, this.options).subscribe((resultFromServer: any) => {
           if (!resultFromServer) { return; }
           this._authCookie.setAuth(resultFromServer.token);
           this._authCookie.setAdmin(resultFromServer.isAdmin);

@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
     if (!this._authCookie.getAuth()) {
       return this.router.navigate(['/']);
     }
-    this.httpClient.post(`${way}/goods`, {token: this._authCookie.getAuth(), pageName: 'admin'}, this.options).subscribe((result: any) => {
+    this.httpClient.post(`${way}/goods`, `data=${JSON.stringify({token: this._authCookie.getAuth(), pageName: 'admin'})}`, this.options).subscribe((result: any) => {
       if (result) {
         this.products = result;
       } else {
@@ -47,7 +47,7 @@ export class AdminComponent implements OnInit {
 
   Create() {
     // tslint:disable-next-line:max-line-length
-    this.httpClient.post(`${way}/goods/create`, {token: this._authCookie.getAuth(), data: this.product}, this.options).subscribe((result: any) => {
+    this.httpClient.post(`${way}/goods/create`, `data=${JSON.stringify({token: this._authCookie.getAuth(), data: this.product})}`, this.options).subscribe((result: any) => {
       if (!result) { return; }
       this.products.push({id: result.id, name: result.name, description: result.description, price: result.price, url: result.url});
     });
@@ -61,7 +61,7 @@ export class AdminComponent implements OnInit {
 
   Update() {
     // tslint:disable-next-line:max-line-length
-    this.httpClient.post(`${way}/goods/update`, {token: this._authCookie.getAuth(), data: this.product}, this.options).subscribe((result: any) => {
+    this.httpClient.post(`${way}/goods/update`, `data=${JSON.stringify({token: this._authCookie.getAuth(), data: this.product})}`, this.options).subscribe((result: any) => {
       if (!result) { return; }
       const productIndex = this.products.findIndex(x => x.id === result.id);
       if (productIndex === -1) { return; }
@@ -72,9 +72,9 @@ export class AdminComponent implements OnInit {
   }
 
   buttonDeleteClick(id: number) {
-    this.httpClient.post(`${way}/goods/delete`, {token: this._authCookie.getAuth(), data: {
+    this.httpClient.post(`${way}/goods/delete`, `data=${JSON.stringify({token: this._authCookie.getAuth(), data: {
       id
-    }}, this.options).subscribe((result: any) => {
+    }})}`, this.options).subscribe((result: any) => {
       if (result) {
         const productIndex = this.products.findIndex(x => x.id === id);
         if (productIndex === -1) { return; }

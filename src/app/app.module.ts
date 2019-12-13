@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthCookie } from './auth-cookies-handler';
 import { ActivateGuard } from './activate-guard';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { FilesComponent } from './files/files.component';
+import { WebSocketService } from './web-soket';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     AdminComponent,
     AboutComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    FilesComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,9 @@ import { CKEditorModule } from 'ng2-ckeditor';
     ActivateGuard,
     CKEditorModule
   ],
-  providers: [],
+  providers: [
+    WebSocketService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

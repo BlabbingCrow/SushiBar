@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthCookie } from '../auth-cookies-handler';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   isAuthed: boolean;
+
 
   // tslint:disable-next-line:variable-name
   constructor(private router: Router, private _authCookie: AuthCookie) { }

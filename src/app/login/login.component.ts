@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   buttonLoginClick() {
-    this.httpClient.post(`${way}/login`, {
+    this.httpClient.post(`${way}/login`, `data=${JSON.stringify({
       login: this.login,
       password: this.password
-    }, this.options).subscribe((result: any) => {
+    })}`, this.options).subscribe((result: any) => {
       if (!result) { return; }
       this._authCookie.setAuth(result.token);
       this._authCookie.setAdmin(result.isAdmin);
