@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import { wayWS } from './config';
 
 @Injectable()
 export class WebSocketService {
@@ -6,7 +7,7 @@ export class WebSocketService {
   // tslint:disable-next-line:variable-name
   private _message: string;
   // tslint:disable-next-line:variable-name
-  private _webSocketContext = new WebSocket('ws://localhost:3002/');
+  private _webSocketContext = new WebSocket(wayWS);
 
   constructor() {
   }

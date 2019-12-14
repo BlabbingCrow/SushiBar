@@ -17,6 +17,7 @@ export class GoodsComponent implements OnInit {
   findText = '';
   lastFindText = '';
   waitTimes = 0;
+  message = '';
 
   // tslint:disable-next-line:variable-name max-line-length
   constructor(private router: Router, private httpClient: HttpClient, private _authCookie: AuthCookie, private webSocketService: WebSocketService) { }
@@ -28,7 +29,11 @@ export class GoodsComponent implements OnInit {
   ngOnInit() {
     this.webSocketService.webSocketContext.onmessage = (result: any) => {
       if (result && result.data) {
-        this.products = JSON.parse(result.data);
+        if (result.data.products) {
+          this.products = JSON.parse(result.data.products);
+        } else {
+          this.message = result.data.message;
+        }
       } else {
         this.router.navigate(['/']);
       }
