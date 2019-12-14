@@ -28,7 +28,10 @@ export class AdminComponent implements OnInit {
     if (!this._authCookie.getAuth()) {
       return this.router.navigate(['/']);
     }
-    this.httpClient.post(`${way}/goods`, `data=${JSON.stringify({token: this._authCookie.getAuth(), pageName: 'admin'})}`, this.options).subscribe((result: any) => {
+    this.httpClient.post(`${way}/goods`, `data=${JSON.stringify({
+      token: this._authCookie.getAuth()
+      })}`, this.options).subscribe((result: any) => {
+      console.log(result);
       if (result) {
         this.products = result;
       } else {
