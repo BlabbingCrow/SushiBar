@@ -52,6 +52,7 @@ export class AdminComponent implements OnInit {
     this.httpClient.post(`${way}/goods/create`, `data=${JSON.stringify({token: this._authCookie.getAuth(), data: this.product})}`, this.options).subscribe((result: any) => {
       if (!result) { return; }
       this.products.push({id: result.id, name: result.name, description: result.description, price: result.price, url: result.url});
+      this.product = new Product();
     });
   }
 
