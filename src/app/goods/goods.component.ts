@@ -28,10 +28,11 @@ export class GoodsComponent implements OnInit {
 
   ngOnInit() {
     this.webSocketService.webSocketContext.onmessage = (result: any) => {
-      if (result && result.data) {
-        if (result.data.products) {
+      console.log('New WS message', result);
+      if (result && result.data && result.type) {
+        if (result.type === 'updateSushi') {
           this.products = JSON.parse(result.data.products);
-        } else {
+        } else if (result.type === 'updateText') {
           this.message = result.data.message;
         }
       } else {
