@@ -34,7 +34,7 @@ export class GoodsComponent implements OnInit {
         if (result.type === 'updateSushi') {
           this.products = result.data;
         } else if (result.type === 'updateText') {
-          this.message = result.data;
+          this.message = result.data.object.body;
         }
       } else {
         this.router.navigate(['/']);
