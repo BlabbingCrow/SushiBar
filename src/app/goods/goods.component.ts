@@ -29,11 +29,12 @@ export class GoodsComponent implements OnInit {
   ngOnInit() {
     this.webSocketService.webSocketContext.onmessage = (result: any) => {
       console.log('New WS message', result);
+      result = JSON.parse(result);
       if (result && result.data && result.type) {
         if (result.type === 'updateSushi') {
-          this.products = JSON.parse(result.data.products);
+          this.products = result.data;
         } else if (result.type === 'updateText') {
-          this.message = result.data.message;
+          this.message = result.data;
         }
       } else {
         this.router.navigate(['/']);
